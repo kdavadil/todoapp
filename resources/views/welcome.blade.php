@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    To Do's App
+                    Free To Do's App
                 </div>
             </div>
         </div>
