@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Todo;
+use App\ToDo;
 use Illuminate\Http\Request;
 
 class ToDosController extends Controller
@@ -17,7 +17,7 @@ class ToDosController extends Controller
 
     //fetch all todo's from database
     //list all the to dos in index page
-        return view('todos.index')->with('todos', Todo::all());
+        return view('todos.index')->with('todos', ToDo::all());
     }
 
     /**
