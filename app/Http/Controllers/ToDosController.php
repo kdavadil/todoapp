@@ -53,6 +53,8 @@ class ToDosController extends Controller
     $todo->description = $data['description'];
     $todo->completed = false;
     $todo->save();
+
+    session()->flash('success', 'Task created sucessfully!');
     
     return redirect('/todos');
     }
@@ -107,6 +109,36 @@ class ToDosController extends Controller
 
         $todo->save();
 
+        session()->flash('update', 'Task updated sucessfully!');
+
+        return redirect('/todos');
+    }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function complete(Request $request, ToDo $todo)
+    {
+        // $this->validate(request(),[
+        //     'name' => 'required',
+        //     'description' => 'required|min:6|max:100'
+    
+        // ]);
+    
+        $data = request()->all();
+
+        // $todo = ToDo::find($todoId);
+
+        $todo->completed = 1;
+
+        $todo->save();
+
+        session()->flash('complete', 'Task marked as completed!');
+
         return redirect('/todos');
     }
 
@@ -122,6 +154,8 @@ class ToDosController extends Controller
     //$todo = ToDo::find($todoId);
 
     $todo->delete();
+    
+    session()->flash('delete', 'Task deleted sucessfully!');
 
     return redirect('/todos');
     }

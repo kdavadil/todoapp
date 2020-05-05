@@ -32,6 +32,26 @@
         </div>
       </nav>
     <div class="container">
+      @if(session()->has('success'))
+        <div class="alert alert-success">
+          {{ session()->get('success') }}
+        </div>
+      @endif
+      @if(session()->has('update'))
+        <div class="alert alert-success">
+          {{ session()->get('update') }}
+        </div>
+      @endif
+      @if(session()->has('delete'))
+      <div class="alert alert-warning">
+        {{ session()->get('delete') }}
+      </div>
+    @endif
+    @if(session()->has('complete'))
+    <div class="alert alert-success">
+      {{ session()->get('complete') }}
+    </div>
+  @endif
         @yield('content')
     </div>
 </body>

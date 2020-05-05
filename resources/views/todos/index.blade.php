@@ -19,6 +19,11 @@
                         @foreach($todos as $todo)
                             <li class="list-group-item">
                                 {{ $todo->name }}
+                                @if($todo->completed == 0)
+                                <span class="badge badge-danger">Incomplete</span>
+                                @else
+                                <span class="badge badge-success">Complete</span>
+                                @endif
                             <a href="/todos/{{ $todo->id }}" class="btn btn-primary btn-sm float-right">View</a>
                             </li>
                         @endforeach()
