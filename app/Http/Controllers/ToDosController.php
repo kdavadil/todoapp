@@ -63,10 +63,10 @@ class ToDosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($todoId)
+    public function show(ToDo $todo)
     {
         // $todo = Todo::find($todoId);
-        return view('todos.show')->with('todo', Todo::find($todoId));
+        return view('todos.show')->with('todo', $todo);
     }
 
     /**
@@ -75,9 +75,11 @@ class ToDosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ToDo $todo)
     {
-        //
+       // $todo = ToDo::find($todoId);
+
+        return view('todos.edit')->with('todo', $todo);
     }
 
     /**
@@ -87,9 +89,25 @@ class ToDosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ToDo $todo)
     {
-        //
+        $this->validate(request(),[
+            'name' => 'required',
+            'description' => 'required|min:6|max:100'
+    
+        ]);
+    
+        $data = request()->all();
+
+        // $todo = ToDo::find($todoId);
+
+        $todo->name = $data['name'];
+
+        $todo->description = $data['description'];
+
+        $todo->save();
+
+        return redirect('/todos');
     }
 
     /**
@@ -98,8 +116,13 @@ class ToDosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ToDo $todo)
     {
-        //
+    
+    //$todo = ToDo::find($todoId);
+
+    $todo->delete();
+
+    return redirect('/todos');
     }
 }
