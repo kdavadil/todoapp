@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Free To Do's App
+                   <a href="/todos">To DOs</a>
                 </div>
             </div>
         </div>
